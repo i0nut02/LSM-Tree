@@ -13,11 +13,9 @@ public class MemSet implements Memtable {
         hashMap.put(b.key(), b.value());
     }
 
-    public boolean delete(byte[] key) {
-        if (hashMap.remove(key) == null) {
-            return false;
-        }
-        return true;
+    public void delete(byte[] key) {
+        hashMap.remove(key);
+        return;
     }
 
     public byte[] get(byte[] key){

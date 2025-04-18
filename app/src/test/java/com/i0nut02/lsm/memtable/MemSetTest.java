@@ -29,9 +29,8 @@ public class MemSetTest {
         byte[] value = "value2".getBytes();
 
         memSet.put(new ByteArrayPair(key, value));
-        boolean deleted = memSet.delete(key);
+        memSet.delete(key);
 
-        assertTrue(deleted);
         assertNull(memSet.get(key));
     }
 
