@@ -2,9 +2,11 @@ package com.i0nut02.lsm.types;
 
 import static com.i0nut02.lsm.comparator.ByteArrayComparator.compare;
 
+import java.util.Arrays;
+
 public record ByteArrayPair(byte[] key, byte[] value) implements Comparable<ByteArrayPair>{
     
-    int getSize() {
+    public int getSize() {
         return key.length + value.length;
     }
 
@@ -13,5 +15,9 @@ public record ByteArrayPair(byte[] key, byte[] value) implements Comparable<Byte
         return compare(key, b.key);
     }
 
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(key);
+    }
 
 }

@@ -10,7 +10,7 @@ import static java.lang.Math.log;
 
 import com.i0nut02.lsm.types.ByteArrayPair;
 
-public class SkipList implements Iterable<ByteArrayPair>, Memtable {
+public class SkipList implements Iterable<ByteArrayPair> {
 
     private final static int DEFAULT_SIZE = 1 << 20;
     private final int levels;
@@ -29,12 +29,10 @@ public class SkipList implements Iterable<ByteArrayPair>, Memtable {
         rand = new Random();
     }
 
-    @Override
     public Iterator<ByteArrayPair> iterator() {
         return new SkipListIterator(head);  
     }
 
-    @Override
     public void put(ByteArrayPair b) {
         SkipNode curr = head;
         SkipNode[] history = new SkipNode[levels];
@@ -62,7 +60,6 @@ public class SkipList implements Iterable<ByteArrayPair>, Memtable {
         return;
     }
 
-    @Override
     public void delete(byte[] key) {
         SkipNode curr = head;
         SkipNode[] history = new SkipNode[levels];
@@ -88,7 +85,6 @@ public class SkipList implements Iterable<ByteArrayPair>, Memtable {
         return;
     }
 
-    @Override
     public byte[] get(byte[] key) {
         SkipNode curr = head;
         for (int i = levels -1; i >= 0; i--) {
@@ -102,12 +98,10 @@ public class SkipList implements Iterable<ByteArrayPair>, Memtable {
         return null;
     }
 
-    @Override
     public int size() {
         return size;    
     }
 
-    @Override
     public List<ByteArrayPair> flush() {
         List<ByteArrayPair> res = new ArrayList<>();
         SkipNode curr = head;
